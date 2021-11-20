@@ -51,6 +51,11 @@ public class OneToOneDemo {
 			Instructor instructor = session.get(Instructor.class, 1);
 			System.out.println(instructor);
 			
+			InstructorDetail instructorDetail2 = session.get(InstructorDetail.class, 1);
+			Instructor instructor2 = instructorDetail2.getInstructor();
+			System.out.println("After Bi-directional");
+			System.out.println(instructor2);
+			
 			
 			session.getTransaction().commit();
 		}

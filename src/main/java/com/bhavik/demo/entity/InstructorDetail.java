@@ -17,6 +17,9 @@ public class InstructorDetail {
 	@Column(name = "rating")
 	private int rating;
 
+	@OneToOne(mappedBy = "instructorDetail")
+	private Instructor instructor;
+
 	public int getId() {
 		return id;
 	}
@@ -39,6 +42,14 @@ public class InstructorDetail {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
 	}
 
 	public InstructorDetail() {
