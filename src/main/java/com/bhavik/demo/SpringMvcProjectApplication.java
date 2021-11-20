@@ -15,7 +15,8 @@ public class SpringMvcProjectApplication {
 		SpringApplication.run(SpringMvcProjectApplication.class, args);
 		
 		//OneToOneDemo.storeNewObject();
-		OneToOneDemo.readInstructorObject();
+		//OneToOneDemo.readInstructorObject();
+		OneToOneDemo.deleteInstructorDetail();
 	}
 
 }

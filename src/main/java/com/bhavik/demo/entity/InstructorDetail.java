@@ -17,7 +17,8 @@ public class InstructorDetail {
 	@Column(name = "rating")
 	private int rating;
 
-	@OneToOne(mappedBy = "instructorDetail")
+	@OneToOne(mappedBy = "instructorDetail", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.PERSIST, CascadeType.REFRESH })
 	private Instructor instructor;
 
 	public int getId() {
