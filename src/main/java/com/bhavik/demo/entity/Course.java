@@ -13,7 +13,7 @@ public class Course {
 	@Column(name = "title", unique = true)
 	private String title;
 
-	@ManyToOne(cascade = { CascadeType.ALL })
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "instructor_id")
 	private Instructor instructor;
 
