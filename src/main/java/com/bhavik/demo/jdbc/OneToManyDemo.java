@@ -132,12 +132,39 @@ public class OneToManyDemo {
 
 			Course course1 = new Course("Apple Silicon");
 
+			
 			Review review1 = new Review("Reivew Note");
-			session.save(review1);
-
+			//session.save(review1);
+			
 			course1.addReview(review1);
 			session.save(course1);
+			session.getTransaction().commit();
 
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+			sessionFactory.close();
+		}
+	}
+	
+	public static void oneToOneUnidirectionalGetReviews() {
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Instructor.class).addAnnotatedClass(InstructorDetail.class)
+				.addAnnotatedClass(Course.class).addAnnotatedClass(Review.class).buildSessionFactory();
+
+		Session session = sessionFactory.getCurrentSession();
+
+		try {
+
+			session.beginTransaction();
+
+			
+			Course course1 = session.get(Course.class,1);
+			System.out.println(course1.getReviews());
+			
 			session.getTransaction().commit();
 
 		}

@@ -21,7 +21,10 @@ public class SpringMvcProjectApplication {
 		//OneToManyDemo.deleteCourse();
 		//OneToManyDemo.getCoursesOfInstructor(1);
 		
-		OneToManyDemo.oneToManyUniDirectionalDemo();
+		
+		//OneToMany Uni-Directional
+		//OneToManyDemo.oneToManyUniDirectionalDemo();
+		OneToManyDemo.oneToOneUnidirectionalGetReviews();
 		
 		
 	}
