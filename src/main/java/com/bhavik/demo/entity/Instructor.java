@@ -1,6 +1,19 @@
 package com.bhavik.demo.entity;
 
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "instructor")
@@ -23,6 +36,10 @@ public class Instructor {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "instructor_detail_id")
 	private InstructorDetail instructorDetail;
+
+	@OneToMany(mappedBy = "instructor", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
+	private List<Course> courseList;
 
 	public int getId() {
 		return id;
@@ -64,6 +81,14 @@ public class Instructor {
 		this.instructorDetail = instructorDetail;
 	}
 
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
+	}
+
 	public Instructor() {
 
 	}
@@ -74,12 +99,21 @@ public class Instructor {
 		this.lastName = lastName;
 		this.email = email;
 		this.instructorDetail = instructorDetail;
+
 	}
 
 	@Override
 	public String toString() {
 		return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", instructorDetail=" + instructorDetail + "]";
+				+ ", instructorDetail=" + instructorDetail + ", courseList=" + courseList + "]";
+	}
+
+	public void addCourse(Course course) {
+		if (this.courseList == null) {
+			courseList = new ArrayList<>();
+		}
+		courseList.add(course);
+		course.setInstructor(this);
 	}
 
 }

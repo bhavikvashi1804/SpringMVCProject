@@ -21,6 +21,21 @@ create table `instructor` (
 );
 
 
+create table course (
+    id int(11) not null auto_increment,
+    title varchar(128) default null,
+    instructor_id int(11) default null,
+    primary key(id),
+    -- Unique Value for Title
+    unique key TITLE_UNIQUE (`title`),
+    -- Index
+    KEY `KEY_INSTRUCTOR_idx` (`instructor_id`),
+    -- Foreign Key Constraint 
+    constraint `FK_INSTRUCTOR`
+    FOREIGN KEY (instructor_id) references instructor(id)
+);
+
+
 
 use student_tracker;
 show tables;
