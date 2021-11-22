@@ -17,8 +17,8 @@ public class SpringMvcProjectApplication {
 		
 		//OneToManyDemo.storeNewObject();
 		//OneToManyDemo.addNewCourse(1);
-		OneToManyDemo.getCoursesOfInstructor(1);
-		OneToManyDemo.deleteCourse();
+		//OneToManyDemo.getCoursesOfInstructor(1);
+		//OneToManyDemo.deleteCourse();
 		OneToManyDemo.getCoursesOfInstructor(1);
 		
 		
