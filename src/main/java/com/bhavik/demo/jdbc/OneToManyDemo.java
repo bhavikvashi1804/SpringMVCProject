@@ -176,4 +176,33 @@ public class OneToManyDemo {
 			sessionFactory.close();
 		}
 	}
+	
+	public static void oneToOneUnidirectionalDeleteCourse() {
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Instructor.class).addAnnotatedClass(InstructorDetail.class)
+				.addAnnotatedClass(Course.class).addAnnotatedClass(Review.class).buildSessionFactory();
+
+		Session session = sessionFactory.getCurrentSession();
+
+		try {
+
+			session.beginTransaction();
+
+			
+			Course course1 = session.get(Course.class,1);
+			session.delete(course1);
+			
+			session.getTransaction().commit();
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+			sessionFactory.close();
+		}
+	}
+	
+	
 }
