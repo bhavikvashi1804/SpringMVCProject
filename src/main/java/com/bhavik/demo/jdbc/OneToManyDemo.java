@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import com.bhavik.demo.entity.Course;
 import com.bhavik.demo.entity.Instructor;
 import com.bhavik.demo.entity.InstructorDetail;
+import com.bhavik.demo.entity.Review;
 
 public class OneToManyDemo {
 
@@ -75,9 +76,9 @@ public class OneToManyDemo {
 
 			Instructor instructor = session.get(Instructor.class, id);
 
-			Course course1= new Course("Python OOPs");
-			instructor.addCourse(course1);	
-			
+			Course course1 = new Course("Python OOPs");
+			instructor.addCourse(course1);
+
 			session.save(course1);
 			session.save(instructor);
 			session.getTransaction().commit();
@@ -92,7 +93,6 @@ public class OneToManyDemo {
 		}
 	}
 
-	
 	public static void deleteCourse() {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Instructor.class).addAnnotatedClass(InstructorDetail.class)
@@ -104,9 +104,40 @@ public class OneToManyDemo {
 
 			session.beginTransaction();
 
-			Course courseTemp = session.get(Course.class,1);
+			Course courseTemp = session.get(Course.class, 1);
 			session.delete(courseTemp);
-			
+
+			session.getTransaction().commit();
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+			sessionFactory.close();
+		}
+	}
+
+	public static void oneToManyUniDirectionalDemo() {
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Instructor.class).addAnnotatedClass(InstructorDetail.class)
+				.addAnnotatedClass(Course.class).addAnnotatedClass(Review.class).buildSessionFactory();
+
+		Session session = sessionFactory.getCurrentSession();
+
+		try {
+
+			session.beginTransaction();
+
+			Course course1 = new Course("Apple Silicon");
+
+			Review review1 = new Review("Reivew Note");
+			session.save(review1);
+
+			course1.addReview(review1);
+			session.save(course1);
+
 			session.getTransaction().commit();
 
 		}
