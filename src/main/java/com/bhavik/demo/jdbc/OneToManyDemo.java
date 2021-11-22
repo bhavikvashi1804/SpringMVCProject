@@ -78,7 +78,7 @@ public class OneToManyDemo {
 			Course course1= new Course("Python OOPs");
 			instructor.addCourse(course1);	
 			
-			//session.save(course1);
+			session.save(course1);
 			session.save(instructor);
 			session.getTransaction().commit();
 
