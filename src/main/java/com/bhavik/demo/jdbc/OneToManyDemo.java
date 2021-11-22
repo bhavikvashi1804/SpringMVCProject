@@ -62,4 +62,32 @@ public class OneToManyDemo {
 		}
 	}
 
+	public static void addNewCourse(int id) {
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Instructor.class).addAnnotatedClass(InstructorDetail.class)
+				.addAnnotatedClass(Course.class).buildSessionFactory();
+
+		Session session = sessionFactory.getCurrentSession();
+
+		try {
+
+			session.beginTransaction();
+
+			Instructor instructor = session.get(Instructor.class, id);
+
+			instructor.addCourse(new Course("Python OOPS"));	
+			
+			session.save(instructor);
+			session.getTransaction().commit();
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+			sessionFactory.close();
+		}
+	}
+
 }

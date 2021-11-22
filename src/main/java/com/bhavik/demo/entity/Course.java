@@ -13,8 +13,8 @@ public class Course {
 	@Column(name = "title", unique = true)
 	private String title;
 
-	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name = "instrutor_id")
+	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "instructor_id")
 	private Instructor instructor;
 
 	public int getId() {
@@ -44,4 +44,15 @@ public class Course {
 	public Course() {
 
 	}
+
+	public Course(String title) {
+		super();
+		this.title = title;
+	}
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", title=" + title + "]";
+	}
+
 }

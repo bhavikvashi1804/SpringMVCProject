@@ -1,13 +1,9 @@
 package com.bhavik.demo;
 
-import javax.persistence.OneToOne;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.bhavik.demo.jdbc.JDBCDemo;
 import com.bhavik.demo.jdbc.OneToManyDemo;
-import com.bhavik.demo.jdbc.OneToOneDemo;
 
 @SpringBootApplication
 public class SpringMvcProjectApplication {
@@ -19,8 +15,11 @@ public class SpringMvcProjectApplication {
 		//OneToOneDemo.readInstructorObject();
 		//OneToOneDemo.deleteInstructorDetail();
 		
-		//OneToManyDemo.storeNewObject();
+		OneToManyDemo.storeNewObject();
+		OneToManyDemo.addNewCourse(1);
 		OneToManyDemo.getCoursesOfInstructor(1);
+		
+		
 	}
 
 }
