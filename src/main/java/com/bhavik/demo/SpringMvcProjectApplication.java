@@ -27,7 +27,9 @@ public class SpringMvcProjectApplication {
 		// OneToManyDemo.oneToOneUnidirectionalGetReviews();
 		// OneToManyDemo.oneToOneUnidirectionalDeleteCourse();
 
-		ManyToManyDemo.storeNewObjects();
+		// Many to Many Relationship
+		// ManyToManyDemo.storeNewObjects();
+		ManyToManyDemo.addMoreCourseToStudent();
 
 	}
 

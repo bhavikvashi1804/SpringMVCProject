@@ -51,4 +51,36 @@ public class ManyToManyDemo {
 
 	}
 
+	public static void addMoreCourseToStudent() {
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Instructor.class).addAnnotatedClass(InstructorDetail.class)
+				.addAnnotatedClass(Course.class).addAnnotatedClass(Review.class).addAnnotatedClass(Student.class)
+				.buildSessionFactory();
+
+		Session session = sessionFactory.getCurrentSession();
+
+		try {
+
+			session.beginTransaction();
+
+			Student s1 = session.get(Student.class, 1);
+
+			Course c1 = new Course("AWS Course");
+
+			s1.addCourse(c1);
+
+			session.save(c1);
+
+			session.getTransaction().commit();
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+			sessionFactory.close();
+		}
+	}
+
 }
