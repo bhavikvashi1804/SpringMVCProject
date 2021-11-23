@@ -1,5 +1,7 @@
 package com.bhavik.demo.jdbc;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -128,6 +130,37 @@ public class ManyToManyDemo {
 
 			Student s1 = session.get(Student.class, 1);
 			System.out.println(s1.getCourses());
+
+			session.getTransaction().commit();
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+			sessionFactory.close();
+		}
+	}
+
+	public static void deleteStudentNotCourse() {
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Instructor.class).addAnnotatedClass(InstructorDetail.class)
+				.addAnnotatedClass(Course.class).addAnnotatedClass(Review.class).addAnnotatedClass(Student.class)
+				.buildSessionFactory();
+
+		Session session = sessionFactory.getCurrentSession();
+
+		try {
+
+			session.beginTransaction();
+
+			Student s1 = session.get(Student.class, 1);
+			session.delete(s1);
+			System.out.println(s1);
+
+			Student s2 = session.get(Student.class, 1);
+			System.out.println(s2);
 
 			session.getTransaction().commit();
 

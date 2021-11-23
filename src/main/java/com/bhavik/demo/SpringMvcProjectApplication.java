@@ -32,6 +32,7 @@ public class SpringMvcProjectApplication {
 		// ManyToManyDemo.addMoreCourseToStudent();
 		// ManyToManyDemo.getCoursesForOneStudent();
 		// ManyToManyDemo.deleteOnlyOneCoursesButNotStudent();
+		ManyToManyDemo.deleteStudentNotCourse();
 
 	}
 
