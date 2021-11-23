@@ -29,7 +29,9 @@ public class SpringMvcProjectApplication {
 
 		// Many to Many Relationship
 		// ManyToManyDemo.storeNewObjects();
-		ManyToManyDemo.addMoreCourseToStudent();
+		// ManyToManyDemo.addMoreCourseToStudent();
+		// ManyToManyDemo.getCoursesForOneStudent();
+		// ManyToManyDemo.deleteOnlyOneCoursesButNotStudent();
 
 	}
 

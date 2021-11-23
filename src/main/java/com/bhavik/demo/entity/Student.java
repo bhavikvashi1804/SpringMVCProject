@@ -49,6 +49,14 @@ public class Student {
 		this.lastName = lastName;
 	}
 
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
 	public Student() {
 
 	}
